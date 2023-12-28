@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        input[type="text"] {
+            width: 100%;
+            padding: 8px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button[type=submit] {
+            width: 10%;
+            background-color: #04AA6D;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .radio-vertical {
+            display: block;
+        }
+    </style>
+    <title>UTC Date and Time</title>
+</head>
+
+<body>
+    <script>
+        function getEpoch(date, hour, min) {
+
+            theDate = new Date(Date.parse(date+"T"+hour.padStart(2,'0')+":"+min.padStart(2,'0')+":00Z")); // get milliseconds epoch of input string 
+            return theDate / 1000;
+        }
+        function getURL() {
+            fromEpoch = getEpoch(document.getElementById("from_date").value,
+                document.getElementById("from_hours").value,
+                document.getElementById("from_minutes").value,
+                );
+            fromEpochDate = new Date(fromEpoch*1000)
+            alert(fromEpochDate + " " + fromEpochDate.toISOString())
+            toEpoch = getEpoch(document.getElementById("to_date").value,
+                document.getElementById("to_hours").value,
+                document.getElementById("to_minutes").value,
+                );
+            toEpochDate = new Date(toEpoch*1000)
+            alert(toEpochDate + " " + toEpochDate.toISOString())
+        }
+    </script>
+    
+    <fieldset>
+        <legend>Download start and end times (UTC):</legend>
+        <label>Start: 
+            <input id="from_date" type="date" value="2023-12-01"> 
+            <input id="from_hours" type="number" min="00" max="23" value="00">
+            :
+            <input id="from_minutes" type="number" min="00" max="55" step="05" value="00">
+        </label>
+        &nbsp;
+        <label>End: 
+            <input id="to_date" type="date" value="2023-12-01"> 
+            <input id="to_hours" type="number" min="00" max="23" value="00">
+            :
+            <input id="to_minutes" type="number" min="00" max="55" step="05" value="00">
+        </label>
+    </fieldset>
+            <button onclick="getURL()">Go!</button>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .tooltip-text {
+      visibility: hidden;
+      z-index: 1;
+      position: absolute;
+      /* width: 100px; */
+      color: white;
+      /* font-size: 12px; */
+      background-color: darkblue;
+      border-radius: 5px;
+      padding: 5px 10px 5px 10px;
+    }
+    .hover-text:hover .tooltip-text {
+      visibility: visible;
+      position: relative;
+    }
+    .popup-form {
+      /* visibility: hidden; */
+      display: none;
+      z-index: 1;
+      position: absolute;
+      /* width: 100px; */
+      color: white;
+      /* font-size: 12px; */
+      background-color: darkblue;
+      border-radius: 5px;
+      padding: 5px 10px 5px 10px;
+    }
+  </style>
+  <title>Tooltip example</title>
+</head>
+<body>
+  <p>some other content</p>
+  <p></p>
+  <div class="hover-text">
+    this is the base element
+    <span class="tooltip-text">base: the foundation of the tool tip</span>
+  </div>
+  <p></p>
+  <div class="click-popup">
+    <button onclick="document.getElementById('blue-red').style.display='block'">clickme</button>
+    <span class="popup-form" id="blue-red">
+      <fieldset>
+        <label><input type="radio" name="color" value="blue">Blue?</label>
+        <label><input type="radio" name="color" value="red">Red?</label>
+      </fieldset>
+      <button>Go!</button>
+    </span>
+  </div>
+</body>
+</html>

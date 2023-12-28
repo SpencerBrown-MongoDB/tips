@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>log type list</title>
+  <script>
+    function getLogType() {
+      lt = document.getElementById("download-logtype").value;
+      alert(lt);
+    }
+  </script>
+</head>
+<body>
+  <label>Log type:
+    <select id="download-logtype">
+      <option value="exampledb">exampled</option>
+      <option value="examples">examples</option>
+    </select>
+  </label>
+  <button onclick="getLogType()">Go!</button>
+</body>
+</html>

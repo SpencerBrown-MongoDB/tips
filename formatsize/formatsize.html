@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Format Size</title>
+</head>
+<body onload="formatSize(document.getElementById('sizeElement'), 42378943798548)">
+  <script>
+      function formatSize(theElement, size) {
+          // alert("hey");
+          truncSize = trunc(size/1048576) + "MB";
+          theElement.value = truncSize;
+      }
+  </script>
+  <p id="sizeElement">filler</p>
+</body>
+</html>
