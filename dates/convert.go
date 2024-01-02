@@ -86,3 +86,42 @@ func ConvertTimeString(arg string, backoff int64) (time.Time, int64, error) {
 	theEpochSecs := theTime.UnixMilli() / 1000
 	return time.UnixMilli(theEpochSecs * 1000).UTC(), theEpochSecs, nil
 }
+
+// getTimesFromQuery gets start and end times as Unix epoch values
+// and returns them as time.Time with appropriate defaults of end = now and start = now - backoff
+func getTimesFromQuery(startTimeString string, endTimeString string, backoff int) (time.Time, time.Time, error) {
+	startTime, err := getTimeFromEpochString(startTimeString)
+	if err != nil {
+		return time.Time{}, time.Time{}, fmt.Errorf("invalid start time: %v", err)
+	}
+	endTime, err := getTimeFromEpochString(endTimeString)
+	if err != nil {
+		return time.Time{}, time.Time{}, fmt.Errorf("invalid end time: %v", err)
+	}
+	if endTime.IsZero() {
+		endTime = time.Now().UTC()
+	}
+	if startTime.IsZero() {
+		startTime = endTime.Add(time.Duration(-backoff) * time.Second)
+	}
+	return startTime, endTime, nil
+}
+
+// getTimeFromEpochString converts a string with the Unix epoch in seconds
+// into a time.Time. If the string is empty or "0", returns a zero time.
+func getTimeFromEpochString(epochString string) (time.Time, error) {
+	if epochString == "" {
+		return time.Time{}, nil
+	}
+	epochVal, err := strconv.ParseInt(epochString, 10, 64)
+	if err != nil {
+		return time.Time{}, err
+	}
+	if epochVal == 0 {
+		return time.Time{}, nil
+	}
+	if epochVal < 0 {
+		return time.Time{}, fmt.Errorf("negative epoch %s", epochString)
+	}
+	return time.UnixMilli(epochVal * 1000).UTC(), nil
+}
