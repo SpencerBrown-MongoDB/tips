@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .in-circle {
+    display: inline;
+    background: lightcyan;
+    color: green;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    /* line-height: 12px; */
+    text-align: center;
+    font-size: 15px;
+    font-family: Verdana;
+}
+    .tooltip-text {
+      display: inline-flex;
+      visibility: hidden;
+      z-index: 1;
+      position: fixed;
+      /* width: 800px; */
+      color: white;
+      font-size: 12px;
+      background-color: darkblue;
+      border-radius: 5px;
+      padding: 2px 2px 2px 2px;
+    }
+    .hover-text:hover .tooltip-text {
+      visibility: visible;
+      position: relative;
+    }
+  </style>
+  <title>Tooltip example</title>
+</head>
+<body>
+  <p class="in-circle">?</p>
+
+  <p class="in-circle">!</p>
+
+
+  <p>
+    this is the base element
+    <span class="hover-text in-circle">&#65110; 
+    <span class="tooltip-text">base: the foundation of the tool tip and even more and more words here</span>
+  </span>
+  </p>
+</body>
+</html>
